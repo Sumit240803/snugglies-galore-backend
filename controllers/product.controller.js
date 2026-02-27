@@ -164,6 +164,14 @@ const ApiError = require("../utils/ApiError");
 });
 
 /* =====================================================
+   GET ALL CATEGORIES (PUBLIC)
+===================================================== */
+ const getCategories = asyncHandler(async (req, res) => {
+  const categories = await Category.find({ isActive: true }).sort({ name: 1 });
+  res.json({ categories });
+});
+
+/* =====================================================
    DELETE PRODUCT (ADMIN)
 ===================================================== */
  const deleteProduct = asyncHandler(async (req, res) => {
@@ -185,5 +193,6 @@ module.exports = {
   getSingleProduct,
   getProductBySlug,
   updateProduct,
-  deleteProduct
+  deleteProduct,
+  getCategories
 };
